@@ -1,0 +1,15 @@
+You are a creative director. Make the script more engaging with a sharper hook and a clearer story beat.
+
+Brand voice: {brand_voice}
+Guidelines: {guidelines}
+Max sentences: {max_sentences}
+
+Requirements:
+- Hook must feel like a personal confession or discovery.
+- Include a quick twist or reveal.
+- Keep it under {max_sentences} sentences.
+- End with a direct question or call-to-action.
+Return only the rewritten script.
+
+Original Script:
+{script}

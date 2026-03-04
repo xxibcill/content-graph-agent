@@ -1,0 +1,63 @@
+{
+  "provider": "tavily",
+  "query": "Trending topics and recent facts about personal branding",
+  "bullets": [
+    "Top 10 Personal Branding Trends Shaping 2025: Discover the top 10 personal branding trends of 2025, from AI tools and authenticity to micro-niche communities and immersive tech. - Ohh my brand.",
+    "Personal Branding Trends for 2026: Personal branding trends for 2026 \u2013 from the death of the influencer formula to the rise of purpose-led brands. Storytelling and strategy that sticks.",
+    "9 Personal Branding Trends For 2025: 1. Acronym Tug of War: WFH, RTO, and Hybrid Work \u00b7 2. Polyworking: The Multi-Career Lifestyle \u00b7 3. Inclusion Looks Different \u00b7 4. The Rise of Voice.",
+    "2026 Personal Branding Trends | Here's What's Working TODAY: Personal branding has fundamentally changed, and if you're still using old strategies in 2026, you're building an audience that will never",
+    "2025 Personal Branding Insights: Statistics and Trends: Your online presence influences career success \u2212 44% of employers have hired candidates based on their personal branding content, while 54% have rejected"
+  ],
+  "sources": [
+    "https://www.ohhmybrand.com/blogs/top-10-personal-branding-trends-shaping-2025",
+    "https://wearecoandco.com/personal-branding-trends-for-2026",
+    "https://www.forbes.com/sites/williamarruda/2025/01/02/9-personal-branding-trends-for-2025/",
+    "https://www.youtube.com/watch?v=oLx2uH-Zjtc",
+    "https://humantobrand.com/2025-personal-branding-insights-statistics-and-trends/"
+  ],
+  "raw": {
+    "query": "Trending topics and recent facts about personal branding",
+    "follow_up_questions": null,
+    "answer": null,
+    "images": [],
+    "results": [
+      {
+        "url": "https://www.ohhmybrand.com/blogs/top-10-personal-branding-trends-shaping-2025",
+        "title": "Top 10 Personal Branding Trends Shaping 2025",
+        "content": "Discover the top 10 personal branding trends of 2025, from AI tools and authenticity to micro-niche communities and immersive tech. - Ohh my brand.",
+        "score": 0.99991107,
+        "raw_content": null
+      },
+      {
+        "url": "https://wearecoandco.com/personal-branding-trends-for-2026",
+        "title": "Personal Branding Trends for 2026",
+        "content": "Personal branding trends for 2026 \u2013 from the death of the influencer formula to the rise of purpose-led brands. Storytelling and strategy that sticks.",
+        "score": 0.99939764,
+        "raw_content": null
+      },
+      {
+        "url": "https://www.forbes.com/sites/williamarruda/2025/01/02/9-personal-branding-trends-for-2025/",
+        "title": "9 Personal Branding Trends For 2025",
+        "content": "1. Acronym Tug of War: WFH, RTO, and Hybrid Work \u00b7 2. Polyworking: The Multi-Career Lifestyle \u00b7 3. Inclusion Looks Different \u00b7 4. The Rise of Voice.",
+        "score": 0.99939287,
+        "raw_content": null
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=oLx2uH-Zjtc",
+        "title": "2026 Personal Branding Trends | Here's What's Working TODAY",
+        "content": "Personal branding has fundamentally changed, and if you're still using old strategies in 2026, you're building an audience that will never",
+        "score": 0.9993436,
+        "raw_content": null
+      },
+      {
+        "url": "https://humantobrand.com/2025-personal-branding-insights-statistics-and-trends/",
+        "title": "2025 Personal Branding Insights: Statistics and Trends",
+        "content": "Your online presence influences career success \u2212 44% of employers have hired candidates based on their personal branding content, while 54% have rejected",
+        "score": 0.9991239,
+        "raw_content": null
+      }
+    ],
+    "response_time": 1.11,
+    "request_id": "f447094d-46cb-4f30-ab70-a5cc16043915"
+  }
+}
