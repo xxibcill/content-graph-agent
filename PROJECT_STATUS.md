@@ -113,6 +113,7 @@ This stage is responsible for making the output feel more engaging, not for fact
 - LangGraph pipeline with four working nodes
 - CLI entrypoint for the full workflow: `scripts/run_graph.py`
 - CLI entrypoint for research-only runs: `scripts/run_research.py`
+- FastAPI service layer in `api/main.py`
 - JSONL run persistence via `utils/persistence.py`
 - JSONL metrics recording via `scripts/record_metrics.py`
 - Prompt versioning for writer and creative agents
@@ -120,6 +121,8 @@ This stage is responsible for making the output feel more engaging, not for fact
 - Retry logic for external API calls
 - File-based research cache
 - Centralized environment-based configuration
+- Automated unit tests under `tests/`
+- GitHub Actions CI workflow under `.github/workflows/ci.yml`
 - Support for multiple OpenAI-compatible LLM providers:
   - OpenAI
   - OpenRouter
@@ -147,9 +150,6 @@ This confirms the project structure is runnable locally at the CLI/import level.
 
 ### Not implemented yet
 
-- automated unit or integration tests
-- CI workflow
-- API service layer such as FastAPI
 - web UI or operator dashboard
 - scheduler implementation inside the project
 - deployment manifests or containerization

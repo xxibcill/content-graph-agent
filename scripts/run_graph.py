@@ -14,9 +14,7 @@ from utils.logging import configure_logging
 load_dotenv()
 configure_logging()
 
-from graph.content_graph import build_graph
-from configs.settings import get_settings
-from utils.persistence import save_run
+from services.content_service import run_workflow
 
 
 def main() -> None:
@@ -31,19 +29,16 @@ def main() -> None:
     parser.add_argument("--output-file", default=None, help="Custom output file path")
     args = parser.parse_args()
 
-    graph = build_graph()
-    state = {
-        "topic": args.topic,
-        "niche": args.niche,
-        "research_limit": args.limit,
-        "manual_feedback": args.feedback,
-    }
-    result = graph.invoke(state)
-    script = (
-        result.get("final_script")
-        or result.get("validated_script")
-        or result.get("draft_script")
+    payload = run_workflow(
+        topic=args.topic,
+        niche=args.niche,
+        limit=args.limit,
+        feedback=args.feedback,
+        save_output_enabled=args.save_output,
+        output_file=args.output_file,
     )
+    result = payload["result"]
+    script = payload["script"]
     if script:
         print(script)
     else:
@@ -61,18 +56,8 @@ def main() -> None:
             print(f"creative_prompt_version={creative_version}")
 
     if args.save_output:
-        settings = get_settings()
-        saved = save_run(
-            settings.output_dir,
-            {
-                "topic": args.topic,
-                "niche": args.niche,
-                "result": result,
-            },
-            output_path=args.output_file,
-        )
-        print(f"saved_run_id={saved['run_id']}")
-        print(f"saved_path={saved['path']}")
+        print(f"saved_run_id={payload['saved_run_id']}")
+        print(f"saved_path={payload['saved_path']}")
 
 
 if __name__ == "__main__":

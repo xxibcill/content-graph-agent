@@ -2,6 +2,12 @@
 
 This repo builds a multi-agent workflow for short-form content development, based on `research.md`. The current state includes research, writing, validation, and creative polishing, plus prompt versioning, A/B hooks, metrics tracking, retries, logging, and output persistence.
 
+It now also includes:
+
+- a small FastAPI service layer for HTTP access
+- an automated unittest suite for core workflow behavior
+- a GitHub Actions CI workflow that runs the test suite
+
 ## Workflow
 
 - Research agent gathers trends and facts
@@ -48,6 +54,18 @@ Full workflow (research + writer + validation + creative):
 ```bash
 uv run python scripts/run_graph.py --topic "personal branding" --niche "creator economy" --show-sources
 ```
+
+Run the API locally:
+
+```bash
+uv run uvicorn api.main:app --reload
+```
+
+Then open:
+
+- `GET /health`
+- `POST /research`
+- `POST /generate`
 
 Provide manual feedback for revisions:
 
@@ -110,6 +128,14 @@ export WRITER_MODEL="deepseek-chat"
 
 - Runs are saved to `outputs/runs-YYYYMMDD.jsonl` by default
 - Metrics append to `outputs/metrics.jsonl`
+
+## Testing
+
+Run the test suite:
+
+```bash
+python -m unittest discover -s tests -v
+```
 
 ## Configuration (env vars)
 
