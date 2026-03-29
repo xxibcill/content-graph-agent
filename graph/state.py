@@ -5,6 +5,9 @@ class ContentState(TypedDict, total=False):
     topic: str
     niche: str
     research_limit: int
+    research_mode: str
+    research_iterations: int
+    research_tool_queries: list[str]
     trends: str
     research_sources: list[str]
     research_query: str

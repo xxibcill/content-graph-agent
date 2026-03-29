@@ -23,10 +23,16 @@ def main() -> None:
     parser.add_argument("--topic", required=True, help="Topic to research")
     parser.add_argument("--niche", default=None, help="Optional niche or audience")
     parser.add_argument("--limit", type=int, default=None, help="Max results")
+    parser.add_argument(
+        "--research-mode",
+        choices=("basic", "react"),
+        default=None,
+        help="Research strategy to use",
+    )
     parser.add_argument("--json", action="store_true", help="Output full JSON")
     args = parser.parse_args()
 
-    result = run_research(args.topic, args.niche, args.limit)
+    result = run_research(args.topic, args.niche, args.limit, args.research_mode)
     if args.json:
         print(json.dumps(result, indent=2, ensure_ascii=True))
         return

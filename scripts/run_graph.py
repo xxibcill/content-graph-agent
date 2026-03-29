@@ -22,6 +22,12 @@ def main() -> None:
     parser.add_argument("--topic", required=True, help="Topic to research")
     parser.add_argument("--niche", default=None, help="Optional niche or audience")
     parser.add_argument("--limit", type=int, default=None, help="Max results")
+    parser.add_argument(
+        "--research-mode",
+        choices=("basic", "react"),
+        default=None,
+        help="Research strategy to use",
+    )
     parser.add_argument("--show-sources", action="store_true", help="Show sources")
     parser.add_argument("--show-versions", action="store_true", help="Show prompt versions")
     parser.add_argument("--feedback", default=None, help="Manual feedback for revisions")
@@ -33,6 +39,7 @@ def main() -> None:
         topic=args.topic,
         niche=args.niche,
         limit=args.limit,
+        research_mode=args.research_mode,
         feedback=args.feedback,
         save_output_enabled=args.save_output,
         output_file=args.output_file,

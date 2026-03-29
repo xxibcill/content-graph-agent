@@ -55,6 +55,12 @@ Full workflow (research + writer + validation + creative):
 uv run python scripts/run_graph.py --topic "personal branding" --niche "creator economy" --show-sources
 ```
 
+Run research with the ReAct loop enabled:
+
+```bash
+uv run python scripts/run_graph.py --topic "personal branding" --research-mode react --show-sources
+```
+
 Run the API locally:
 
 ```bash
@@ -143,8 +149,12 @@ The CLIs load environment variables from a local `.env` file if present.
 
 Research
 - `RESEARCH_PROVIDER`: `tavily` (default) or `serper`
+- `RESEARCH_MODE`: `basic` (default) or `react`
 - `TAVILY_API_KEY`: Tavily API key (required if provider is tavily)
 - `SERPER_API_KEY`: Serper API key (required if provider is serper)
+- `RESEARCH_AGENT_MODEL`: model used by the ReAct research loop
+- `RESEARCH_AGENT_TEMPERATURE`: temperature for the ReAct research loop (default `0.1`)
+- `REACT_MAX_STEPS`: max ReAct reasoning/tool steps (default `3`)
 - `RESEARCH_CACHE_DIR`: cache path (default `.cache/research`)
 - `RESEARCH_CACHE_TTL_SECONDS`: cache TTL in seconds (default `86400`)
 - `RESEARCH_RESULT_LIMIT`: max results to keep (default `5`)

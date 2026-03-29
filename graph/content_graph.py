@@ -18,13 +18,17 @@ def research_node(state: ContentState) -> dict[str, Any]:
 
     niche = state.get("niche")
     limit = state.get("research_limit")
-    result = run_research(topic, niche, limit)
+    research_mode = state.get("research_mode")
+    result = run_research(topic, niche, limit, research_mode)
 
     return {
         "trends": format_bullets(result.get("bullets", [])),
         "research_sources": result.get("sources", []),
         "research_query": result.get("query", ""),
         "research_provider": result.get("provider", ""),
+        "research_mode": result.get("mode", "basic"),
+        "research_iterations": result.get("iterations", 1),
+        "research_tool_queries": result.get("tool_queries", []),
     }
 
 

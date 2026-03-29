@@ -11,6 +11,7 @@ class ContentServiceTests(unittest.TestCase):
             topic="topic",
             niche="niche",
             limit=4,
+            research_mode="react",
             feedback="feedback",
             brand_voice="clear",
             writer_max_sentences=5,
@@ -21,6 +22,7 @@ class ContentServiceTests(unittest.TestCase):
         self.assertEqual(state["topic"], "topic")
         self.assertEqual(state["niche"], "niche")
         self.assertEqual(state["research_limit"], 4)
+        self.assertEqual(state["research_mode"], "react")
         self.assertEqual(state["manual_feedback"], "feedback")
         self.assertEqual(state["brand_voice"], "clear")
         self.assertEqual(state["writer_max_sentences"], 5)

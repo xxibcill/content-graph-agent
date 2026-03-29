@@ -21,6 +21,9 @@ class ContentGraphTests(unittest.TestCase):
             "sources": ["https://example.com/a"],
             "query": "query",
             "provider": "tavily",
+            "mode": "basic",
+            "iterations": 1,
+            "tool_queries": ["query"],
         }
         mock_run_writer.return_value = {
             "script": "Draft script.",
@@ -41,6 +44,7 @@ class ContentGraphTests(unittest.TestCase):
 
         self.assertEqual(result["final_script"], "Final script.")
         self.assertEqual(result["research_provider"], "tavily")
+        self.assertEqual(result["research_mode"], "basic")
         self.assertEqual(result["writer_prompt_version"], "v1")
         self.assertEqual(result["creative_prompt_version"], "v2")
 
@@ -60,6 +64,9 @@ class ContentGraphTests(unittest.TestCase):
             "sources": [],
             "query": "query",
             "provider": "tavily",
+            "mode": "react",
+            "iterations": 1,
+            "tool_queries": ["query"],
         }
         mock_run_writer.side_effect = [
             {"script": "Initial draft.", "prompt_version": "v1"},
@@ -95,6 +102,54 @@ class ContentGraphTests(unittest.TestCase):
         self.assertEqual(mock_run_writer.call_count, 2)
         self.assertEqual(result["draft_script"], "Rewritten draft.")
         self.assertEqual(result["final_script"], "Final script.")
+
+    @patch("graph.content_graph.run_creative")
+    @patch("graph.content_graph.run_validation")
+    @patch("graph.content_graph.run_writer")
+    @patch("graph.content_graph.run_research")
+    def test_graph_passes_research_mode_to_research_agent(
+        self,
+        mock_run_research,
+        mock_run_writer,
+        mock_run_validation,
+        mock_run_creative,
+    ) -> None:
+        mock_run_research.return_value = {
+            "bullets": ["Trend A"],
+            "sources": [],
+            "query": "query",
+            "provider": "tavily",
+            "mode": "react",
+            "iterations": 2,
+            "tool_queries": ["query one", "query two"],
+        }
+        mock_run_writer.return_value = {
+            "script": "Draft script.",
+            "prompt_version": "v1",
+        }
+        mock_run_validation.return_value = {
+            "validated_script": "Validated script.",
+            "validation_status": "ok",
+            "validation_notes": "ok",
+            "validation_feedback": "- None detected",
+        }
+        mock_run_creative.return_value = {
+            "script": "Final script.",
+            "prompt_version": "v2",
+        }
+
+        result = build_graph().invoke(
+            {"topic": "personal branding", "research_mode": "react"}
+        )
+
+        mock_run_research.assert_called_once_with(
+            "personal branding",
+            None,
+            None,
+            "react",
+        )
+        self.assertEqual(result["research_iterations"], 2)
+        self.assertEqual(result["research_tool_queries"], ["query one", "query two"])
 
 
 if __name__ == "__main__":

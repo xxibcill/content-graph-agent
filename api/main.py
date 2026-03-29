@@ -17,12 +17,14 @@ class ResearchRequest(BaseModel):
     topic: str = Field(min_length=1)
     niche: Optional[str] = None
     limit: Optional[int] = Field(default=None, ge=1, le=10)
+    research_mode: Optional[str] = Field(default=None, pattern="^(basic|react)$")
 
 
 class GenerateRequest(BaseModel):
     topic: str = Field(min_length=1)
     niche: Optional[str] = None
     limit: Optional[int] = Field(default=None, ge=1, le=10)
+    research_mode: Optional[str] = Field(default=None, pattern="^(basic|react)$")
     feedback: Optional[str] = None
     brand_voice: Optional[str] = None
     writer_max_sentences: Optional[int] = Field(default=None, ge=1, le=20)
@@ -51,6 +53,7 @@ def research(request: ResearchRequest) -> dict[str, Any]:
         topic=request.topic,
         niche=request.niche,
         limit=request.limit,
+        research_mode=request.research_mode,
     )
 
 
@@ -60,6 +63,7 @@ def generate(request: GenerateRequest) -> WorkflowResponse:
         topic=request.topic,
         niche=request.niche,
         limit=request.limit,
+        research_mode=request.research_mode,
         feedback=request.feedback,
         brand_voice=request.brand_voice,
         writer_max_sentences=request.writer_max_sentences,

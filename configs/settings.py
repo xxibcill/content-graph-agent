@@ -19,6 +19,10 @@ class Settings:
     tavily_api_key: Optional[str]
     serper_api_key: Optional[str]
     research_provider: str
+    research_mode: str
+    research_agent_model: str
+    research_agent_temperature: float
+    react_max_steps: int
     cache_dir: str
     cache_ttl_seconds: int
     default_limit: int
@@ -56,6 +60,10 @@ def get_settings() -> Settings:
     if provider not in {"tavily", "serper"}:
         provider = "tavily"
 
+    research_mode = os.getenv("RESEARCH_MODE", "basic").strip().lower()
+    if research_mode not in {"basic", "react"}:
+        research_mode = "basic"
+
     llm_provider = os.getenv("LLM_PROVIDER", "openai").strip().lower()
     if llm_provider not in {"openai", "openrouter", "groq", "deepseek"}:
         llm_provider = "openai"
@@ -71,6 +79,10 @@ def get_settings() -> Settings:
         tavily_api_key=os.getenv("TAVILY_API_KEY"),
         serper_api_key=os.getenv("SERPER_API_KEY"),
         research_provider=provider,
+        research_mode=research_mode,
+        research_agent_model=os.getenv("RESEARCH_AGENT_MODEL", default_model),
+        research_agent_temperature=float(os.getenv("RESEARCH_AGENT_TEMPERATURE", "0.1")),
+        react_max_steps=int(os.getenv("REACT_MAX_STEPS", "3")),
         cache_dir=os.getenv("RESEARCH_CACHE_DIR", ".cache/research"),
         cache_ttl_seconds=int(os.getenv("RESEARCH_CACHE_TTL_SECONDS", "86400")),
         default_limit=int(os.getenv("RESEARCH_RESULT_LIMIT", "5")),

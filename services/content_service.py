@@ -10,6 +10,7 @@ def build_initial_state(
     topic: str,
     niche: Optional[str] = None,
     limit: Optional[int] = None,
+    research_mode: Optional[str] = None,
     feedback: Optional[str] = None,
     brand_voice: Optional[str] = None,
     writer_max_sentences: Optional[int] = None,
@@ -23,6 +24,8 @@ def build_initial_state(
         "research_limit": limit,
         "manual_feedback": feedback,
     }
+    if research_mode:
+        state["research_mode"] = research_mode
     if brand_voice:
         state["brand_voice"] = brand_voice
     if writer_max_sentences is not None:
@@ -49,14 +52,16 @@ def run_research_only(
     topic: str,
     niche: Optional[str] = None,
     limit: Optional[int] = None,
+    research_mode: Optional[str] = None,
 ) -> dict[str, Any]:
-    return run_research(topic, niche, limit)
+    return run_research(topic, niche, limit, research_mode)
 
 
 def run_workflow(
     topic: str,
     niche: Optional[str] = None,
     limit: Optional[int] = None,
+    research_mode: Optional[str] = None,
     feedback: Optional[str] = None,
     brand_voice: Optional[str] = None,
     writer_max_sentences: Optional[int] = None,
@@ -70,6 +75,7 @@ def run_workflow(
         topic=topic,
         niche=niche,
         limit=limit,
+        research_mode=research_mode,
         feedback=feedback,
         brand_voice=brand_voice,
         writer_max_sentences=writer_max_sentences,
